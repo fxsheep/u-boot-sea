@@ -14,7 +14,7 @@
 #include <dm/device_compat.h>
 
 #include <asm/io.h>
-#include <asm/arch/timer.h>
+//#include <asm/arch/timer.h>
 
 #define DW_APB_LOAD_VAL		0x0
 #define DW_APB_CURR_VAL		0x4

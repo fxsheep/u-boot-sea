@@ -1,0 +1,105 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * dts file for Xilinx ZynqMP R5
+ *
+ * (C) Copyright 2018, Xilinx, Inc.
+ *
+ * Michal Simek <michal.simek@amd.com>
+ */
+
+/dts-v1/;
+
+/ {
+	#address-cells = <1>;
+	#size-cells = <1>;
+	compatible = "seagate,sea4";
+	model = "Seagate SEA4";
+	interrupt-parent = <&intc>;
+
+	cpus {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+
+		cpu@0 {
+			compatible = "arm,cortex-r4";
+			device_type = "cpu";
+			reg = <0>;
+		};
+	};
+
+	aliases {
+		serial0 = &uart0;
+	};
+
+	memory@40000000 {
+		device_type = "memory";
+		reg = <0x40000000 0x4000000>;
+	};
+
+	chosen {
+		bootargs = "";
+		stdout-path = "serial0:115200n8";
+	};
+
+	xosc_30m: xosc_30m {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <30000000>;
+		bootph-all;
+	};
+
+	clk100: clk100 {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <100000000>;
+		bootph-all;
+	};
+
+	amba {
+		bootph-all;
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		intc: interrupt-controller@800d0000 {
+			compatible = "seagate,sea4-intc";
+			reg = <0x800d0000 0x200>;
+			interrupt-controller;
+			#interrupt-cells = <1>;
+		};
+
+		timer0: timer@800d4140 {
+			compatible = "snps,dw-apb-timer";
+			reg = <0x800d4140 0x14>;
+			clocks = <&xosc_30m>;
+			clock-names = "timer";
+			interrupts = <4>;
+		};
+
+		timer1: timer@800d4154 {
+			compatible = "snps,dw-apb-timer";
+			reg = <0x800d4154 0x14>;
+			clocks = <&xosc_30m>;
+			clock-names = "timer";
+			interrupts = <5>;
+		};
+
+		timer2: timer@800d4168 {
+			compatible = "snps,dw-apb-timer";
+			reg = <0x800d4168 0x14>;
+			clocks = <&xosc_30m>;
+			clock-names = "timer";
+			interrupts = <6>;
+		};
+
+		uart0: serial@800d3000 {
+			compatible = "seagate,sea4-uart", "snps,dw-apb-uart";
+			reg = <0x800d3000 0x100>;
+			interrupts = <3>;
+			reg-shift = <2>;
+			reg-io-width = <4>;
+			clocks = <&clk100>;
+		};
+	};
+};

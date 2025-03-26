@@ -1333,6 +1333,15 @@ config ARCH_ZYNQMP_R5
 	imply CMD_DM
 	imply DM_USB_GADGET
 
+config ARCH_SEA4
+	bool "Seagate SEA4 HDD controller"
+	select CLK
+	select CPU_V7R
+	select DM
+	select DM_SERIAL
+	select OF_CONTROL
+	imply CMD_DM
+
 config ARCH_ZYNQMP
 	bool "Xilinx ZynqMP based platform"
 	select ARM64
@@ -2370,6 +2379,8 @@ source "arch/arm/mach-versal2/Kconfig"
 source "arch/arm/mach-versal-net/Kconfig"
 
 source "arch/arm/mach-zynqmp-r5/Kconfig"
+
+source "arch/arm/mach-sea4/Kconfig"
 
 source "arch/arm/cpu/armv7/Kconfig"
 

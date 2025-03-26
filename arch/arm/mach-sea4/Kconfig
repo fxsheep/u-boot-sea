@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-2.0
+
+if ARCH_SEA4
+
+config SEA4
+	bool
+	select DM_SERIAL
+	select SYS_NS16550
+
+config SYS_BOARD
+	string "Board name"
+	default "sea4"
+
+config SYS_VENDOR
+	string "Vendor name"
+	default "Seagate"
+
+config SYS_SOC
+	default "sea4"
+
+config CPU_FREQ_HZ
+	int "CPU frequency"
+	default 800000000
+	help
+	  The value, in Hz, that the CPU clock is running at.
+
+config TARGET_SEA4
+	bool "Support Seagate SEA4 HDD controller"
+	select SEA4
+
+source "board/Seagate/sea4/Kconfig"
+
+endif

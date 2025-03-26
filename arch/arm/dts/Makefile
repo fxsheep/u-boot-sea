@@ -393,6 +393,8 @@ dtb-$(CONFIG_ARCH_VERSAL_NET) += \
 	xilinx-versal-net-virt.dtb
 dtb-$(CONFIG_ARCH_ZYNQMP_R5) += \
 	zynqmp-r5.dtb
+dtb-$(CONFIG_ARCH_SEA4) += \
+	sea4.dtb
 dtb-$(CONFIG_AM33XX) += \
 	am335x-baltos.dtb \
 	am335x-bone.dtb \
