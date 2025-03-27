@@ -101,5 +101,20 @@
 			reg-io-width = <4>;
 			clocks = <&clk100>;
 		};
+
+		spi0: spi@800d6000 {
+			compatible = "snps,dw-apb-ssi";
+			#address-cells = <1>;
+			#size-cells = <0>;
+			reg = <0x800d6000 0x100>;
+			//interrupts = <7>; //unknown
+			num-cs = <1>;
+			clocks = <&clk100>;
+			spi_flash@0 {
+				compatible = "jedec,spi-nor";
+				reg = <0>;
+				spi-max-frequency = <4000000>;
+			};
+		};
 	};
 };
