@@ -28,7 +28,7 @@ int arch_cpu_init(void)
 {
 	//gd->cpu_clk = CONFIG_CPU_FREQ_HZ;
 
-	setup_mpu_regions(region_config, ARRAY_SIZE(region_config));
+	//setup_mpu_regions(region_config, ARRAY_SIZE(region_config));
 
 	// disable prescaler of timers
 	writel(0x0, SYSCON_BASE + SYSCON_CLKDIV_TIMER0);
